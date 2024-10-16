@@ -1,2 +1,2 @@
 # Proyecto_IS
-Sistema de Gestión de Citas
+Sistema Web de Gestión de Citas y Expedientes Médicos 

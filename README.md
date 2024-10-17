@@ -1,5 +1,5 @@
 # Proyecto_IS
-## Sistema Web de Gestión de Citas y Expedientes Médicos
+## Sistema Web de Gestión de Citas y Expedientes Médicos #f03c15
 
 1. Descripción 
 El siguiente proyecto tiene como fin la creación de un sistema web de gestión de citas y Expedientes Médicos, a manera de simplificar y reunir la información en un solo lugar para la comodidad del paciente.

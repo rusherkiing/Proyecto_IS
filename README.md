@@ -5,7 +5,6 @@
 > El siguiente proyecto tiene como fin la creación de un sistema web de gestión de citas y Expedientes Médicos, a manera de simplificar y reunir la información en un solo lugar para la comodidad del paciente.
 
 2. Integrantes - Funciones
-```diff
 - Dorian Coronado - Couch, desarrollador de Front y Backend, desarrolador de la Base de Datos
 - Abril Farel - Desarrolladora de Frontend
 - Johan Barrionuevo - Desarrollador de Backend

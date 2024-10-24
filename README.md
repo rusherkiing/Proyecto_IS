@@ -12,4 +12,4 @@
 3. Herramientas de Desarrollo
 
 4. Diagrama de la Base de Datos
-
+![Diagrama de Base de Datos](https://github.com/rusherkiing/Proyecto_IS/blob/main/ddb.png?raw=true)

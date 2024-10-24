@@ -10,10 +10,11 @@
 - Johan Barrionuevo - Desarrollador de Backend
 
 3. Herramientas de Desarrollo
-•	Editor de código: Visual Studio Code y IDX.
-•	Sistema de control de versiones: GitHub para gestionar el código.
-•	Servidor local: XAMPP.
-•	Navegador web: Será un navegador basado en Chromium.
-
-5. Diagrama de la Base de Datos
+- Editor de código: Visual Studio Code y IDX.
+- 	Sistema de control de versiones: GitHub para gestionar el código.
+-	Servidor local: XAMPP.
+-	Navegador web: Será un navegador basado en Chromium.
+  
+4. Diagrama de la Base de Datos
+   
 ![Diagrama de Base de Datos](https://github.com/rusherkiing/Proyecto_IS/blob/main/ddb.png?raw=true)

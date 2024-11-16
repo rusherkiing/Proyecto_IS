@@ -17,6 +17,6 @@
   
 4. Diagrama de la Base de Datos.
 <p align="center">
-  <img src="[URL_DE_LA_IMAGEN](https://github.com/rusherkiing/Proyecto_IS/blob/main/ddb.png?raw=true)" alt="Descripción de la imagen">
+  <img src="https://github.com/rusherkiing/Proyecto_IS/blob/main/ddb.png?raw=true" alt="Diagrama Base de Datos">
 </p>
 

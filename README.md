@@ -16,5 +16,7 @@
 -	Navegador web: Será un navegador basado en Chromium.
   
 4. Diagrama de la Base de Datos.
-   
-![Diagrama de Base de Datos](https://github.com/rusherkiing/Proyecto_IS/blob/main/ddb.png?raw=true)
+<p align="center">
+  <img src="[URL_DE_LA_IMAGEN](https://github.com/rusherkiing/Proyecto_IS/blob/main/ddb.png?raw=true)" alt="Descripción de la imagen">
+</p>
+

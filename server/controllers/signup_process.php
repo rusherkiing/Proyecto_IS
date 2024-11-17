@@ -2,16 +2,7 @@
 session_start();
 
 // Database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "clinica";
-$port = 3307;
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include("../database/conecction.php");
 
 if (isset($_POST["buttonlogin"])) {
     $name = $_POST["name"];

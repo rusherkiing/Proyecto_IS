@@ -75,14 +75,20 @@
                         </div>
                         <div class="form-group">
                             <label for="role">Soy un:</label>
-                            <div class="form-check ml-4">
-                                <input class="form-check-input" type="radio" name="role" id="paciente" value="pacientes" required>
-                                <label class="form-check-label" for="paciente">Paciente</label>
-
-                                <input class="form-check-input ml-4" type="radio" name="role" id="medico" value="medico" required>
-                                <label class="form-check-label ml-4" for="medico">Médico</label>
+                            <div class="row ml-2">
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="role" id="paciente" value="pacientes" required>
+                                        <label class="form-check-label" for="paciente">Paciente</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="role" id="medico" value="medico" required>
+                                        <label class="form-check-label" for="medico">Médico</label>
+                                    </div>
+                                </div>
                             </div>
-    
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary" name="buttonlogin">Login</button>

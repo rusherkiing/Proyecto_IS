@@ -31,19 +31,36 @@ $stmt->bind_result($passwordHash); // Almacenar el resultado (el hash)
 $stmt->fetch();
 $stmt->close();
 
+
+
+
 // Verificar si se encontró el usuario
 if ($passwordHash) {
     // Validar la contraseña ingresada contra el hash
     if (password_verify($passwordIngresada, $passwordHash)) {
-        echo "Inicio de sesión exitoso \n";
-        
-        echo "\n Bienvenido $user";
-        // Aquí puedes iniciar sesión y redirigir al usuario
+        //echo "Inicio de sesión exitoso \n";
+        switch ($rol) {
+            case 'admin':
+                header("Location: ../../client/views/admin/dashboard.php");
+                break;
+            case 'medico':
+                header("Location: ../../client/views/doctor/dashboard.php");
+                break;
+            case 'pacientes':
+                //echo "Inicio de sesión exitoso";
+                header("Location: ../../client/views/patient/dashboard.php");
+                break;
+            default:
+                header("Location: ../../client/views/error.php");
+                break;
+        }
+        exit();
     } else {
         echo "Contraseña incorrecta";
     }
 } else {
     echo "Usuario no encontrado";
+    header("Location: ..././client/views/error.php");   
 }
 // Cerrar la conexión
 $conn->close();

@@ -1,6 +1,6 @@
 <?php
-include 'views/common/header.php';
-include 'views/common/navbar.php';
+include 'common/header.php';
+include 'common/navbar.php';
 ?>
 
 <!-- Slider Area -->

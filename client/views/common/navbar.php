@@ -8,7 +8,7 @@
 							 <div class="col-lg-3 col-md-3 col-12">
 								 <!-- Start Logo -->
 								 <div class="logo">
-									 <a href="index.html"><img src="../../asset/img/logo.png" alt="#"></a>
+									 <a href="index.html"><img src="asset/img/logo.png" alt="#"></a>
 								 </div>
 								 <!-- End Logo -->
 								 <!-- Mobile Nav -->
@@ -40,7 +40,7 @@
 							 </div>
 							 <div class="col-lg-2 col-12">
 								 <div class="get-quote">
-									 <a href="../client/views/login.php" class="btn">Iniciar Sesión</a>
+									 <a href="views/login.php" class="btn">Iniciar Sesión</a>
 								 </div>
 							 </div>
 						 </div>

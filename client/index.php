@@ -1,6 +1,6 @@
 <?php
-include 'common/header.php';
-include 'common/navbar.php';
+include 'views/common/header.php';
+include 'views/common/navbar.php';
 ?>
 
 <!-- Slider Area -->
@@ -210,7 +210,7 @@ include 'common/navbar.php';
 							</div>
 						</div>
 						<!-- End Video Animation -->
-						<a href="https://www.youtube.com/watch?v=RFVXy6CRVR4" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
+						<a href="#" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
 					</div>
 				</div>
 				<!-- End Choose Rights -->

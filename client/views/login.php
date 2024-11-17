@@ -2,6 +2,7 @@
 include 'common/header.php'; 
 include 'common/navbar.php';
 ?>
+
 <!-- Login Form -->
 
 <section class="login-form section">

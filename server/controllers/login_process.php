@@ -35,9 +35,9 @@ $stmt->close();
 if ($passwordHash) {
     // Validar la contraseña ingresada contra el hash
     if (password_verify($passwordIngresada, $passwordHash)) {
-        echo "Inicio de sesión exitoso \n";
+        header("Location: ../client/views/profile_$role.php");
         
-        echo "\n Bienvenido $user";
+        // echo "\n Bienvenido $user";
         // Aquí puedes iniciar sesión y redirigir al usuario
     } else {
         echo "Contraseña incorrecta";

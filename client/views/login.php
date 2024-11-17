@@ -28,12 +28,12 @@
 					<div class="form-group ml-5"></div>
 						<label for="role">Soy un:</label>
 						<div class="form-check ">
-							<input class="form-check-input" type="radio" name="role" id="paciente" value="pacientes" required>
-							<label class="form-check-label" for="paciente">Paciente</label>
+							<input class="form-check-input" type="radio" name="role" id="patients" value="patients" required>
+							<label class="form-check-label" for="patients">Paciente</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="role" id="medico" value="medico" required>
-							<label class="form-check-label" for="medico">Médico</label>
+							<input class="form-check-input" type="radio" name="role" id="doctors" value="doctors" required>
+							<label class="form-check-label" for="doctors">Médico</label>
 						</div>
 					</div>
                 </form>
@@ -71,10 +71,10 @@
 					<div class="form-group ml-5"></div>
 						<label for="role">Soy un:</label>
 						<div class="form-check ">
-							<input class="form-check-input" type="radio" name="role" id="paciente" value="pacientes" required>
-							<label class="form-check-label" for="paciente">Paciente</label>
-							<input class="form-check-input" type="radio" name="role" id="medico" value="medico" required>
-							<label class="form-check-label" for="medico">Médico</label>
+							<input class="form-check-input" type="radio" name="role" id="patients" value="patients" required>
+							<label class="form-check-label" for="patients">Paciente</label>
+							<input class="form-check-input" type="radio" name="role" id="doctors" value="doctors" required>
+							<label class="form-check-label" for="doctors">Médico</label>
 						</div>
 						
 					</div>

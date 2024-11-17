@@ -34,12 +34,159 @@
             <link rel="stylesheet" href="../../asset/css/responsive.css">
             
         </head>
-        <?php include '../common/navbar.php'; ?>
+        <?php //include '../common/navbar.php'; ?>
     
 
 <body>
 
+<div class="container mt-5">
+    <div class="row">
+        <!-- Dashboard Summary -->
+        <div class="col-md-12">
+            <h2>Dashboard</h2>
+            <div class="card">
+                <div class="card-header">
+                    Proximas Citas
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Date:</strong> 2023-10-15 <br>
+                            <strong>Time:</strong> 10:00 AM <br>
+                            <strong>Doctor:</strong> Dr. John Doe
+                        </li>
+                        <!-- Add more appointments as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="row mt-4">
+        <!-- Recent Medical Records -->
+        <div class="col-md-6">
+            <h3>Recientes Registros Medicos</h3>
+            <div class="card">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Date:</strong> 2023-09-20 <br>
+                            <strong>Diagnosis:</strong> Flu <br>
+                            <strong>Treatment:</strong> Rest and hydration
+                        </li>
+                        <!-- Add more records as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="col-md-6">
+            <h3>Notifications</h3>
+            <div class="card">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Reminder:</strong> Your next appointment is on 2023-10-15 at 10:00 AM.
+                        </li>
+                        <!-- Add more notifications as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Schedule Appointment -->
+        <div class="col-md-12">
+            <h3>Programar Cita</h3>
+            <div class="card">
+                <div class="card-body">
+                    <form>
+                        <label for="specialty">Especialidad:</label>
+                        <div class="form-group">    
+                            <select class="form-control" id="specialty">
+                                <option>Cardiology</option>
+                                <option>Dermatology</option>
+                                <option>Neurology</option>
+                                <!-- Add more specialties as needed -->
+                            </select>
+                        </div>
+                        <label for="doctor">Medico</label>
+                        <div class="form-group">
+                            <select class="form-control" id="doctor">
+                                <option>Dr. John Doe</option>
+                                <option>Dr. Jane Smith</option>
+                                <!-- Add more doctors as needed -->
+                            </select>
+                        </div>
+                        <div class="form-group text-center">
+                            <label for="date">Día:</label>
+                            <input type="date" class="form-control" id="date">
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Hora:</label>
+                            <input type="time" class="form-control" id="time">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Schedule</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Profile Management -->
+        <div class="col-md-12">
+            <h3>Profile Management</h3>
+            <div class="card">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" value="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" value="john.doe@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="profilePicture">Profile Picture</label>
+                            <input type="file" class="form-control" id="profilePicture">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Contact and FAQs -->
+        <div class="col-md-12">
+            <h3>Contact & FAQs</h3>
+            <div class="card">
+                <div class="card-body">
+                    <h4>Contact Us</h4>
+                    <p>Email: support@clinic.com</p>
+                    <p>Phone: +123 456 7890</p>
+                    <h4>FAQs</h4>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Q:</strong> How do I schedule an appointment? <br>
+                            <strong>A:</strong> Use the form above to select a specialty, doctor, date, and time.
+                        </li>
+                        <!-- Add more FAQs as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 <!-- jquery Min JS -->
 <script src="../../asset/js/jquery.min.js"></script>
@@ -82,5 +229,5 @@
 		<!-- Main JS -->
 		<script src="../../asset/js/main.js"></script>
 
-<?php include '../common/footer.php'; ?>
+<?php //include '../common/footer.php'; ?>
 <!-- Login Form -->

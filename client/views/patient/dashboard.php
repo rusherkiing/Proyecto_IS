@@ -1,44 +1,5 @@
-<head>
-            <!-- Title -->
-            <title>Clínica Virgen de las Nieves</title>
-            
-            <!-- Favicon -->
-            <link rel="icon" href="../asset/img/favicon.png">
-            
-            <!-- Google Fonts -->
-            <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-    
-
-            <!-- Bootstrap CSS -->
-            <link rel="stylesheet" href="../../asset/css/bootstrap.min.css">
-            <!-- Nice Select CSS -->
-            <link rel="stylesheet" href="../../asset/css/nice-select.css">
-            <!-- Font Awesome CSS -->
-            <link rel="stylesheet" href="../../asset/css/font-awesome.min.css">
-            <!-- icofont CSS -->
-            <link rel="stylesheet" href="../../asset/css/icofont.css">
-            <!-- Slicknav -->
-            <link rel="stylesheet" href="../../asset/css/slicknav.min.css">
-            <!-- Owl Carousel CSS -->
-            <link rel="stylesheet" href="../../asset/css/owl-carousel.css">
-            <!-- Datepicker CSS -->
-            <link rel="stylesheet" href="../../asset/css/datepicker.css">
-            <!-- Animate CSS -->
-            <link rel="stylesheet" href="../../asset/css/animate.min.css">
-            <!-- Magnific Popup CSS -->
-            <link rel="stylesheet" href="../../asset/css/magnific-popup.css">
-    
-            <!-- Medipro CSS -->
-            <link rel="stylesheet" href="../../asset/css/normalize.css">
-            <link rel="stylesheet" href="../../asset/css/style.css">
-            <link rel="stylesheet" href="../../asset/css/responsive.css">
-            
-        </head>
-        <?php //include '../common/navbar.php'; ?>
-    
 
 <body>
-
 <div class="container mt-5">
     <div class="row">
         <!-- Dashboard Summary -->
@@ -120,8 +81,8 @@
                                 <!-- Add more doctors as needed -->
                             </select>
                         </div>
-                        <div class="form-group text-center">
-                            <label for="date">Día:</label>
+                        <div class="form-group">
+                            <label for="date">Día</label>
                             <input type="date" class="form-control" id="date">
                         </div>
                         <div class="form-group">
@@ -230,4 +191,3 @@
 		<script src="../../asset/js/main.js"></script>
 
 <?php //include '../common/footer.php'; ?>
-<!-- Login Form -->

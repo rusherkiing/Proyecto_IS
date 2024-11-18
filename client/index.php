@@ -87,11 +87,11 @@
 											 <li><a href="#">Médicos </a></li>
 											 <li><a href="#">Especialidades <i class="icofont-rounded-down"></i></a>
 												 <ul class="dropdown">
-													 <li><a href="">Especialidad 1</a></li>
-													 <li><a href="">Especialidad 2</a></li>
-													 <li><a href="">Especialidad 3</a></li>
-													 <li><a href="">Especialidad 4</a></li>
-													 <li><a href="">Especialidad 5</a></li>
+													 <li><a href="">Cardiología</a></li>
+													 <li><a href="">Dermatología</a></li>
+													 <li><a href="">Ginecología</a></li>
+													 <li><a href="">Oftalmología</a></li>
+													 <li><a href="">Pediatría</a></li>
 												 </ul>
 											 </li>
 											 <li><a href="#">Sobre Nosotros </a></li>

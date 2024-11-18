@@ -1,199 +1,185 @@
 <?php include '../../server/views/header.php'; ?>
-<!-- Login Form -->
 <head>
-<link rel="stylesheet" href="../../client/css/bootstrap.min.css">
-<link rel="stylesheet" href="../../client/css/icofont.min.css">
-<link rel="stylesheet" href="../../client/css/style.css">
-<link rel="stylesheet" href="../../client/css/responsive.css">
-</head>
+	<style>
+	/* Asegura que los radio buttons estén centrados en el contenedor */
+	.form-check-inline {
+		display: inline-block; /* Los radio buttons se mantienen en línea */
+		margin-right: 20px; /* Añadir espacio entre ellos */
+		margin-left: 50px; /* Añadir un pequeño margen a la izquierda para centrar los radio buttons */
+	}
 
+	/* Reducir el tamaño del botón de ver/ocultar contraseña para que coincida con el campo de la contraseña */
+	.input-group .btn {
+		padding: 5px 10px; /* Reduce el padding para que el botón sea más pequeño */
+		font-size: 16px; /* Ajusta el tamaño de la fuente */
+		height: 38px; /* Asegura que el botón tenga la misma altura que el campo */
+	}
+
+	/* Ajustar el tamaño de la caja del campo de contraseña */
+	.input-group .form-control {
+		height: 38px; /* Asegura que el campo de contraseña tenga la misma altura que el botón */
+	}
+
+	/* Estilo del botón de contraseña en el login */
+	#toggle-password, #toggle-password-signup {
+		font-size: 18px; /* Hace el ícono más pequeño */
+	}
+	/* Aumentar el tamaño de los radio buttons */
+	.form-check-input {
+		transform: scale(1.5); /* Aumenta el tamaño de los radio buttons */
+		margin-right: 10px; /* Añade algo de espacio entre el radio button y la etiqueta */
+	}
+	/* Reducir el margen y padding en el contenedor */
+	body {
+		margin-top: 0; /* Eliminar margen superior del body */
+	}
+
+	/* Reducir el espacio superior de la sección de login */
+	.login-form.section {
+		padding-top: 30px; /* Ajusta este valor según sea necesario */
+	}
+
+	</style>
+</head>
+<body>
 <section class="login-form section">
-<div class="container"></div>
-    <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8 col-12">
-            <div class="form-box">
-                <h2>Login</h2>
-                <form action="../../server/controllers/login_process.php" method="POST">
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-12">
+                <!-- Card for Login -->
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title text-left">Login</h1>
+                        <form action="../../server/controllers/login_process.php" method="POST">
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <div class="input-group">
+                                    <input type="password" id="password" name="password" class="form-control" required>
+                                    <div class="input-group-append">
+                                        <button type="button" id="toggle-password" class="btn btn-outline-light">
+                                            <i class="icofont-eye-blocked"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group text-left">
+                                <label for="role">Soy un:</label>
+							</div>
+							<div class="form-group text-center">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" id="patients" value="patients" required>
+                                    <label class="form-check-label" for="patients">Paciente</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" id="doctors" value="doctors" required>
+                                    <label class="form-check-label" for="doctors">Médico</label>
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-light" name="buttonlogin">Login</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" class="form-control" required >
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" name="buttonlogin">Login</button>
-                    </div>
-					<div class="form-group ml-5"></div>
-						<label for="role">Soy un:</label>
-						<div class="form-check ">
-							<input class="form-check-input" type="radio" name="role" id="patients" value="patients" required>
-							<label class="form-check-label" for="patients">Paciente</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="role" id="doctors" value="doctors" required>
-							<label class="form-check-label" for="doctors">Médico</label>
-						</div>
-					</div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </section>
-<!-- /End Login Form -->
 
 <!-- Signup Form -->
 <section class="signup-form section">
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8 col-12">
-            <div class="form-box">
-                <h2>Sign Up</h2>
-                <form action="../../server/controllers/signup_process.php" method="post">
-                    <div class="form-group">
-                        <label for="name">Nombre:</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-12">
+                <!-- Card for Sign Up -->
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title text-left">Sign Up</h1>
+                        <form action="../../server/controllers/signup_process.php" method="post">
+                            <div class="form-group">
+                                <label for="name">Nombre:</label>
+                                <input type="text" id="name" name="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last">Apellido:</label>
+                                <input type="text" id="last" name="last" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <div class="input-group">
+                                    <input type="password" id="password-signup" name="password" class="form-control" required>
+                                    <div class="input-group-append">
+                                        <button type="button" id="toggle-password-signup" class="btn btn-outline-light">
+                                            <i class="icofont-eye-blocked"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group text-left">
+                                <label for="role">Soy un:</label>
+							</div>
+							<div class="form-group text-center">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" id="patients" value="patients" required>
+                                    <label class="form-check-label" for="patients">Paciente</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="role" id="doctors" value="doctors" required>
+                                    <label class="form-check-label" for="doctors">Médico</label>
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-light" name="buttonsignup">Sign Up</button>
+                            </div>
+                        </form>
                     </div>
-					<div class="form-group">
-                        <label for="name">Apellido:</label>
-                        <input type="text" id="name" name="last" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" class="form-control" required>
-                    </div>
-					<div class="form-group ml-5"></div>
-						<label for="role">Soy un:</label>
-						<div class="form-check ">
-							<input class="form-check-input" type="radio" name="role" id="patients" value="patients" required>
-							<label class="form-check-label" for="patients">Paciente</label>
-							<input class="form-check-input" type="radio" name="role" id="doctors" value="doctors" required>
-							<label class="form-check-label" for="doctors">Médico</label>
-						</div>
-						
-					</div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary" name="buttonlogin">Sign Up</button>
-                    </div>
-					
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </section>
-<!-- /End Signup Form -->
-				</div>
-			</div>
-		</section>
-		<!-- /End Newsletter Area -->
-		
-		<!-- Footer Area -->
-		<footer id="footer" class="footer ">
-			<!-- Footer Top -->
-			<div class="footer-top">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-3 col-md-6 col-12">
-							<div class="single-footer">
-								<h2>Clínica<br> Virgen de las Nieves</h2>
-								<p>Ubicada camino a Viacha Av. - Nro. 1.</p>
-								<!-- Social -->
-								<ul class="social">
-									<li><a href="#"><i class="icofont-facebook"></i></a></li>
-									<li><a href="#"><i class="icofont-twitter"></i></a></li>
-									<li><a href="#"><i class="icofont-instagram"></i></i></a></li>
-									<li><a href="#"><i class="icofont-brand-whatsapp"></i></i></a></li>
-								</ul>
-								<!-- End Social -->
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6 col-12">
-							<div class="single-footer">
-								<h2>Horarios de funcionamiento:</h2>
-								<ul class="time-sidual">
-									<li class="day">Lunes - Viernes <span>8.00-20.00</span></li>
-									<li class="day">Sábado <span>9.00-18.30</span></li>
-									<li class="day">Feriados <span>Sólo Emergencia</span></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6 col-12">
-							<div class="single-footer">
-								<h2>Noticias</h2>
-								<p>Suscríbete a nuestro buzón de notificaciones</p>
-								<form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-									<input name="email" placeholder="Email" class="common-input" onfocus="this.placeholder = ''"
-										onblur="this.placeholder = 'Your email address'" required="" type="email">
-									<button class="button"><i class="icofont icofont-paper-plane"></i></button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--/ End Footer Top -->
-			<!-- Copyright -->
-			<div class="copyright">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-12">
-							<div class="copyright-content">
-								<p>© Copyright 2018  |  All Rights Reserved by <a href="" target="_blank">Python GX</a> </p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--/ End Copyright -->
-		</footer>
-		<!--/ End Footer Area -->
-		
-		<!-- jquery Min JS -->
-        <script src="js/jquery.min.js"></script>
-		<!-- jquery Migrate JS -->
-		<script src="js/jquery-migrate-3.0.0.js"></script>
-		<!-- jquery Ui JS -->
-		<script src="js/jquery-ui.min.js"></script>
-		<!-- Easing JS -->
-        <script src="js/easing.js"></script>
-		<!-- Color JS -->
-		<script src="js/colors.js"></script>
-		<!-- Popper JS -->
-		<script src="js/popper.min.js"></script>
-		<!-- Bootstrap Datepicker JS -->
-		<script src="js/bootstrap-datepicker.js"></script>
-		<!-- Jquery Nav JS -->
-        <script src="js/jquery.nav.js"></script>
-		<!-- Slicknav JS -->
-		<script src="js/slicknav.min.js"></script>
-		<!-- ScrollUp JS -->
-        <script src="js/jquery.scrollUp.min.js"></script>
-		<!-- Niceselect JS -->
-		<script src="js/niceselect.js"></script>
-		<!-- Tilt Jquery JS -->
-		<script src="js/tilt.jquery.min.js"></script>
-		<!-- Owl Carousel JS -->
-        <script src="js/owl-carousel.js"></script>
-		<!-- counterup JS -->
-		<script src="js/jquery.counterup.min.js"></script>
-		<!-- Steller JS -->
-		<script src="js/steller.js"></script>
-		<!-- Wow JS -->
-		<script src="js/wow.min.js"></script>
-		<!-- Magnific Popup JS -->
-		<script src="js/jquery.magnific-popup.min.js"></script>
-		<!-- Counter Up CDN JS -->
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-		<!-- Bootstrap JS -->
-		<script src="js/bootstrap.min.js"></script>
-		<!-- Main JS -->
-		<script src="js/main.js"></script>
-    </body>
+
+<?php include '../../server/views/footer.php'; ?>
+
+<script>
+// Mostrar/Ocultar Contraseña en Login
+document.getElementById("toggle-password").addEventListener("click", function() {
+    var passwordField = document.getElementById("password");
+    var icon = this.querySelector("i");
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        icon.classList.remove("icofont-eye-blocked");
+        icon.classList.add("icofont-eye");
+    } else {
+        passwordField.type = "password";
+        icon.classList.remove("icofont-eye");
+        icon.classList.add("icofont-eye-blocked");
+    }
+});
+
+// Mostrar/Ocultar Contraseña en Sign Up
+document.getElementById("toggle-password-signup").addEventListener("click", function() {
+    var passwordField = document.getElementById("password-signup");
+    var icon = this.querySelector("i");
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        icon.classList.remove("icofont-eye-blocked");
+        icon.classList.add("icofont-eye");
+    } else {
+        passwordField.type = "password";
+        icon.classList.remove("icofont-eye");
+        icon.classList.add("icofont-eye-blocked");
+    }
+});
+</script>
+
+</body>
 </html>

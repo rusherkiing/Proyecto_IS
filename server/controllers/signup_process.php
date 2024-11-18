@@ -22,7 +22,7 @@ if (isset($_POST["buttonlogin"])) {
     //$user = new User();  
 }
 $password = password_hash($password, PASSWORD_DEFAULT);
-$sql = "INSERT INTO $role (name,last_name, email, password) VALUES ('$name','$last', '$email', '$password')";
+$sql = "INSERT INTO $role (first_name,last_name, email, password) VALUES ('$name','$last', '$email', '$password')";
 $result = $conn->query($sql);
 echo "Usuario registrado correctamente";
 ?>

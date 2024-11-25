@@ -87,7 +87,7 @@
 							 </div>
 							 <div class="col-lg-2 col-12">
 								 <div class="get-quote">
-									 <a href="../login.php	" class="btn">Iniciar Sesión</a>
+									 <a href="login.php" class="btn">Iniciar Sesión</a>
 								 </div>
 							 </div>
 						 </div>

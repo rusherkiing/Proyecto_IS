@@ -16,7 +16,7 @@ $email = $_SESSION['email'];
 $foto = $_SESSION['foto'];
 
 // Consultar citas previas
-$sql_citas = "SELECT a.appointment_date, a.appointment_time, 
+$sql_citas = "SELECT a.appointment_id, a.appointment_date, a.appointment_time, 
               d.first_name AS doctor_first_name, d.last_name AS doctor_last_name, 
               d.specialty, a.status 
               FROM appointments a
@@ -39,7 +39,22 @@ $stmt_citas->close();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <?php include '../common/navbar.php'; ?>
 
+     <!-- CSS específico para esta página -->
+     <style>
+        /* Asegura que todas las celdas tengan una altura consistente */
+table td {
+    vertical-align: middle;
+}
+.modify-btn, .cancel-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 28px;
+    width: auto;
+    box-sizing: border-box;
+}
 
+    </style>
 </head>
 <body>
     <!-- Mostrar los datos del paciente -->
@@ -68,34 +83,88 @@ $stmt_citas->close();
         </div>
     </div>
 
-     <!-- Mostrar citas previas -->
-     <h3>Citas Previas</h3>
-        <?php if (!empty($citas_previas)) { ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Doctor</th>
-                        <th>Especialidad</th>
-                        <th>Estado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($citas_previas as $cita) { ?>
-                        <tr>
-                            <td><?= $cita['appointment_date']; ?></td>
-                            <td><?= $cita['appointment_time']; ?></td>
-                            <td><?= $cita['doctor_first_name'] . ' ' . $cita['doctor_last_name']; ?></td>
-                            <td><?= $cita['specialty']; ?></td>
-                            <td><?= ucfirst($cita['status']); ?></td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        <?php } else { ?>
-            <p>No tienes citas previas.</p>
-        <?php } ?>
+
+    
+    <div class="container mt-5">
+    <!-- Card de encabezado -->
+    <div class="card mt-3">
+        <div class="card-body">
+            <div class="row">
+                <!-- Columna para el título -->
+                <div class="col-md-6">
+                    <h3>Citas Previas</h3>
+                </div>
+                <!-- Columna para el botón -->
+                <div class="col-md-6 text-end">
+                    <a href="#agendar-cita" class="btn btn-primary" style="float: right;">Agendar Cita</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- mensaje de erro o de success -->
+    <?php if (isset($_SESSION['error'])): ?>
+    <div class="container mt-2">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <?= $_SESSION['error']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    </div>
+    <?php unset($_SESSION['error']); ?>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['success'])): ?>
+    <div class="container mt-2">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <?= $_SESSION['success']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    </div>
+    <?php unset($_SESSION['success']); ?>
+    <?php endif; ?>
+    <!-- Card para la tabla de citas -->
+    <div class="card mt-3">
+        <div class="card-body">
+            <?php if (!empty($citas_previas)) { ?>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Fecha</th>
+                                <th class="text-center">Hora</th>
+                                <th class="text-center">Doctor</th>
+                                <th class="text-center">Especialidad</th>
+                                <th class="text-center">Estado</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($citas_previas as $cita) { ?>
+                                <tr>
+                                    <td class="text-center"><?= $cita['appointment_date']; ?></td>
+                                    <td class="text-center"><?= $cita['appointment_time']; ?></td>
+                                    <td class="text-center"><?= $cita['doctor_first_name'] . ' ' . $cita['doctor_last_name']; ?></td>
+                                    <td class="text-center"><?= $cita['specialty']; ?></td>
+                                    <td class="text-center"><?= ucfirst($cita['status']); ?></td>
+                                    <td>
+                                    <?php if (isset($cita['status']) && $cita['status'] === 'scheduled') { ?>
+                                        <!-- Botones Modificar y Cancelar -->
+                                        <a href="modificar_cita.php?id=<?=$cita['appointment_id']; ?>" class="btn btn-warning modify-btn" style="float: left; padding: 4px">Modificar</a>
+                                        <a href="cancelar_cita.php?id=<?=$cita['appointment_id']; ?>" class="btn btn-danger cancel-btn" style="float: right; padding: 4px">Cancelar</a>
+                                    <?php } ?>
+
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php } else { ?>
+                <p class="text-center">No tienes citas previas.</p>
+            <?php } ?>
+        </div>
+    </div>
+</div>
+
 
 
     <!-- Agendar cita-->

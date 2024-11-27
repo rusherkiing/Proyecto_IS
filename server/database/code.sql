@@ -1,21 +1,25 @@
 CREATE TABLE patients (
-  patient_id INT PRIMARY KEY AUTO_INCREMENT,
+  id INT PRIMARY KEY AUTO_INCREMENT,
   first_name VARCHAR(100) NOT NULL,
   last_name VARCHAR(100) NOT NULL,
   email VARCHAR(150) UNIQUE NOT NULL,
+  phone VARCHAR(20) NOT NULL,
   password VARCHAR(255) NOT NULL,
-  photo VARCHAR(255)
+  photo VARCHAR(255),
+  index (id)
 );
 
 CREATE TABLE doctors (
-  doctor_id INT PRIMARY KEY AUTO_INCREMENT,
+  id INT PRIMARY KEY AUTO_INCREMENT,
   first_name VARCHAR(100) NOT NULL,
   last_name VARCHAR(100) NOT NULL,
   email VARCHAR(150) UNIQUE NOT NULL,
+  phone VARCHAR(20) NOT NULL,
   password VARCHAR(255) NOT NULL,
   photo VARCHAR(255),
-  specialty VARCHAR(100) NOT NULL
-);
+  specialty ENUM('Oftalmología', 'Cardiología', 'Pediatría', 'Ginecología', 'Dermatología', 'Medicina General') DEFAULT 'Medicina General',
+  index (id)
+  );
 
 CREATE TABLE appointments (
   appointment_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -24,8 +28,8 @@ CREATE TABLE appointments (
   appointment_date DATE NOT NULL,
   appointment_time TIME NOT NULL,
   status ENUM('scheduled', 'cancelled', 'completed') DEFAULT 'scheduled',
-  FOREIGN KEY (patient_id) REFERENCES patients(patient_id) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES doctors(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE medical_records (
@@ -37,8 +41,8 @@ CREATE TABLE medical_records (
   diagnosis TEXT,
   treatment TEXT,
   studies TEXT,
-  FOREIGN KEY (patient_id) REFERENCES patients(patient_id) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES doctors(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE notifications (
@@ -47,7 +51,7 @@ CREATE TABLE notifications (
   message VARCHAR(255) NOT NULL,
   notification_date DATE NOT NULL,
   type ENUM('reminder', 'alert', 'update') DEFAULT 'reminder',
-  FOREIGN KEY (patient_id) REFERENCES patients(patient_id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE schedules (
@@ -57,7 +61,7 @@ CREATE TABLE schedules (
   end_time TIME NOT NULL,
   availability ENUM('available', 'unavailable') DEFAULT 'available',
   shift ENUM('morning', 'afternoon', 'night') NOT NULL,
-  FOREIGN KEY (doctor_id) REFERENCES doctors(doctor_id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (doctor_id) REFERENCES doctors(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE admins (

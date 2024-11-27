@@ -1,42 +1,7 @@
 <?php
 //include 'common/header.php'; 
-include 'common/navbar.php';
+include '../common/navbar.php';
 ?>
- <head>
-            <!-- Title -->
-            <title>Clínica Virgen de las Nieves</title>
-            
-            <!-- Favicon -->
-            <link rel="icon" href="../asset/img/favicon.png">
-            
-            <!-- Google Fonts -->
-            <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-    
-
-            <!-- Bootstrap CSS -->
-            <link rel="stylesheet" href="../asset/css/bootstrap.min.css">
-            <!-- Nice Select CSS -->
-            <link rel="stylesheet" href="../asset/css/nice-select.css">
-            <!-- Font Awesome CSS -->
-            <link rel="stylesheet" href="../asset/css/font-awesome.min.css">
-            <!-- icofont CSS -->
-            <link rel="stylesheet" href="../asset/css/icofont.css">
-            <!-- Slicknav -->
-            <link rel="stylesheet" href="../asset/css/slicknav.min.css">
-            <!-- Owl Carousel CSS -->
-            <link rel="stylesheet" href="../asset/css/owl-carousel.css">
-            <!-- Datepicker CSS -->
-            <link rel="stylesheet" href="../asset/css/datepicker.css">
-            <!-- Animate CSS -->
-            <link rel="stylesheet" href="../asset/css/animate.min.css">
-            <!-- Magnific Popup CSS -->
-            <link rel="stylesheet" href="../asset/css/magnific-popup.css">
-        
-            <!-- Medipro CSS -->
-            <link rel="stylesheet" href="../asset/css/normalize.css">
-            <link rel="stylesheet" href="../asset/css/style.css">
-            <link rel="stylesheet" href="../asset/css/responsive.css">
-        </head>
 <!-- Signup Form -->
 <section class="signup-form section">
     <div class="container">
@@ -44,7 +9,7 @@ include 'common/navbar.php';
             <div class="col-lg-6 col-md-8 col-12">
                 <div class="form-box">
                     <h2>Sign Up</h2>
-                    <form action="../../server/controllers/signup_process.php" method="post">
+                    <form action="../../../server/controllers/signup_process.php" method="post">
                         <div class="form-group">
                             <label for="name">Nombre:</label>
                             <input type="text" id="name" name="name" class="form-control" required>
@@ -58,6 +23,9 @@ include 'common/navbar.php';
                             <input type="email" id="email" name="email" class="form-control" required>
                         </div>
                         <div class="form-group">
+                            <label for="phone">Teléfono:</label>
+                            <input type="number" id="phone" name="phone" class="form-control" required>
+                        <div class="form-group">
                             <label for="password">Password:</label>
                             <input type="password" id="password" name="password" class="form-control" required>
                         </div>
@@ -66,13 +34,13 @@ include 'common/navbar.php';
                             <div class="row ml-2">
                                 <div class="col-md-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="role" id="paciente" value="pacientes" required>
+                                        <input class="form-check-input" type="radio" name="role" id="patients" value="patients" required>
                                         <label class="form-check-label" for="paciente">Paciente</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="role" id="medico" value="medico" required>
+                                        <input class="form-check-input" type="radio" name="role" id="doctors" value="doctors" required>
                                         <label class="form-check-label" for="medico">Médico</label>
                                     </div>
                                 </div>

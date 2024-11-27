@@ -14,7 +14,7 @@ $rol = $_POST['role'];
 $emailIngresado = $_POST['email'];
 $passwordIngresada = $_POST['password'];
 
-$sql = "SELECT patient_id, first_name, last_name, email, password, photo FROM $rol WHERE email = ?";
+$sql = "SELECT id, first_name, last_name, email, password, photo FROM $rol WHERE email = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $emailIngresado); // Asociar el correo al parámetro
 $stmt->execute();
@@ -56,7 +56,7 @@ if ($passwordHash) {
     }
 } else {
     echo "Usuario no encontrado";
-    header("Location: .../../client/views/error.php");   
+    //header("Location: .../../client/views/error.php");   
 }
 // Cerrar la conexión
 $conn->close();

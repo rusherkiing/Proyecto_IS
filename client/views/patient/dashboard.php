@@ -20,7 +20,7 @@ $sql_citas = "SELECT a.appointment_id, a.appointment_date, a.appointment_time,
               d.first_name AS doctor_first_name, d.last_name AS doctor_last_name, 
               d.specialty, a.status 
               FROM appointments a
-              JOIN doctors d ON a.doctor_id = d.doctor_id
+              JOIN doctors d ON a.doctor_id = d.id
               WHERE a.patient_id = ?
               ORDER BY a.appointment_date DESC, a.appointment_time DESC";
 $stmt_citas = $conn->prepare($sql_citas);

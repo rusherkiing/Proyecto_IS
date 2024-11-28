@@ -1,4 +1,3 @@
-<script src="../../asset/js/schedule_form.js"></script>
 <div class="container mt-5">
     <div class="card mt-3">
         <div id="scheduleFormContainer" class="card-body">
@@ -58,5 +57,45 @@
         </div>
     </div>
 </div>
-<script src="../../asset/js/schedule_form.js"></script>
-<script src="js/schedule_form.js"></script>
+
+
+<script>
+
+    document.getElementById('next-to-step-2').addEventListener('click', function () {
+        console.log('Botón Siguiente presionado'); // Verifica si el evento está conectado
+        alert('Botón Siguiente funciona'); // Mensaje visual para confirmar que el script se ejecuta
+    });
+</script>
+
+    document.getElementById('next-to-step-2').addEventListener('click', function () {
+        // Verificar que se haya seleccionado una fecha y una especialidad
+        const date = document.getElementById('appointment_date').value;
+        const specialty = document.getElementById('specialty').value;
+
+        if (!date || !specialty) {
+            alert('Por favor, selecciona una fecha y una especialidad.');
+            return; // Evitar que avance si no se seleccionan ambos campos
+        }
+
+        // Llamada para obtener los doctores según la especialidad seleccionada
+        fetch(`../../../server/controllers/get_doctors.php?specialty=${specialty}`)
+            .then(response => response.json())
+            .then(data => {
+                const doctorSelect = document.getElementById('doctor');
+                doctorSelect.innerHTML = '<option value="" disabled selected>Selecciona un doctor</option>';
+                data.forEach(doctor => {
+                    doctorSelect.innerHTML += `<option value="${doctor.id}">${doctor.first_name} ${doctor.last_name}</option>`;
+                });
+
+                // Mostrar el paso 2 y ocultar el paso 1
+                document.getElementById('step-1').style.display = 'none';
+                document.getElementById('step-2').style.display = 'block';
+            })
+            .catch(error => {
+                alert('Error al cargar los doctores.');
+                console.error(error);
+            });
+    });
+</script>
+</body>
+

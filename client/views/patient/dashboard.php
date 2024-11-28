@@ -4,7 +4,7 @@ require_once '../../../server/database/conection.php';
 
 // Verificar si el usuario está autenticado y es paciente
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patients') {
-    header("Location: ../../client/views/login.php");
+    header("Location: ../login.php");
     exit;
 }
 
@@ -35,7 +35,7 @@ $stmt_citas->close();
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Paciente</title>
-    <link rel="stylesheet" href="../../asset/css/styles.css">
+    <link rel="stylesheet" href="../../asset/css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <?php include '../common/navbar.php'; ?>
 

@@ -6,6 +6,8 @@ CREATE TABLE patients (
   phone VARCHAR(20) NOT NULL,
   password VARCHAR(255) NOT NULL,
   photo VARCHAR(255),
+  gender ENUM('Masculino', 'Femenino') NOT NULL,
+  age INT,
   index (id)
 );
 
@@ -18,6 +20,8 @@ CREATE TABLE doctors (
   password VARCHAR(255) NOT NULL,
   photo VARCHAR(255),
   specialty ENUM('Oftalmología', 'Cardiología', 'Pediatría', 'Ginecología', 'Dermatología', 'Medicina General') DEFAULT 'Medicina General',
+  gender ENUM('Masculino', 'Femenino') NOT NULL,
+  age INT,
   index (id)
   );
 
@@ -37,7 +41,6 @@ CREATE TABLE medical_records (
   patient_id INT NOT NULL,
   doctor_id INT NOT NULL,
   record_date DATE NOT NULL,
-  specialty VARCHAR(100) NOT NULL,
   diagnosis TEXT,
   treatment TEXT,
   studies TEXT,

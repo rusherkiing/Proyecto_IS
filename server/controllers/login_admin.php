@@ -7,17 +7,19 @@ include("../database/conection.php");
 // Get form data
 $emailIngresado = $_POST['email'];
 $passwordIngresada = $_POST['password'];
-$rol = $_POST['role'];
 
 // Verificar si los datos del formulario fueron enviados
-if (empty($emailIngresado) || empty($passwordIngresada) || empty($rol)) {
+if (empty($emailIngresado) || empty($passwordIngresada)) {
     echo "Por favor, ingrese todos los campos.";
     exit();
 }
 
 try {
+    // Set the role to 'admins'
+    $rol = 'admins';
+
     // Preparar la consulta para obtener los datos del usuario
-    $sql = "SELECT id, first_name, last_name, email, password, photo, gender, age FROM $rol WHERE email = ?";
+    $sql = "SELECT admin_id, email, password FROM $rol WHERE email = ?";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
@@ -33,11 +35,12 @@ try {
     }
 
     // Asociar las columnas de resultado a variables
-    $stmt->bind_result($id, $nombre, $apellido, $email, $passwordHash, $foto, $gender, $age);
+    $stmt->bind_result($id,$email, $passwordHash);
 
     // Obtener los datos
     if (!$stmt->fetch()) {
-        throw new Exception("No se encontró ningún registro con el correo ingresado.");
+        //throw new Exception("No se encontró ningún registro con el correo ingresado.");
+        header("../../client/views/login.php");
     }
 
     // Cerrar el statement
@@ -58,24 +61,9 @@ if (isset($passwordHash)) {
         $_SESSION['nombre'] = $nombre;
         $_SESSION['apellido'] = $apellido;
         $_SESSION['email'] = $email;
-        $_SESSION['role'] = $rol;
-        $_SESSION['foto'] = $foto;
 
-        // Redirección según el rol
-        switch ($rol) {
-            case 'admin':
-                header("Location: ../../client/views/admin/dashboard.php");
-                break;
-            case 'doctors':
-                header("Location: ../../client/views/doctor/dashboard.php");
-                break;
-            case 'patients':
-                header("Location: ../../client/views/patient/dashboard.php");
-                break;
-            default:
-                header("Location: ../../client/views/login.php");
-                break;
-        }
+        // Redirección para el admin
+        header("Location: ../../client/views/admin/dashboard.php");
         exit();
     } else {
         // Contraseña incorrecta

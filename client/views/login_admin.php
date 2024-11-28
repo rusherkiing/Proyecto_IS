@@ -50,7 +50,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h1 class="card-title text-left">Login</h1>
-                        <form action="../../server/controllers/login_process.php" method="POST">
+                        <form action="../../server/controllers/login_admin.php" method="POST">
                             <div class="form-group">
                                 <label for="email">Email:</label>
                                 <input type="email" id="email" name="email" class="form-control" required>
@@ -66,24 +66,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group text-left">
-                                <label for="role">Soy un:</label>
-							</div>
-							<div class="form-group text-center">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" id="patients" value="patients" required>
-                                    <label class="form-check-label" for="patients">Paciente</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" id="doctors" value="doctors" required>
-                                    <label class="form-check-label" for="doctors">Médico</label>
-                                </div>
-                            </div>
+                            
                             <div class="form-group text-center">
-                                <button type="submit" class="btn btn-light" name="buttonlogin">Login</button>
-                            </div>
-                            <div class="form-group text-center">
-                                <a href="login_admin.php" style="color: blue;">Eres Administrador?</a>
+                                <button type="submit" class="btn btn-light" name="buttonlogin2">Login</button>
                             </div>
                         </div>
                         </form>
@@ -93,41 +78,6 @@
         </div>
     </div>
 </section>
-
-
-<?php include 'common/footer.php'; ?>
-
-<script>
-// Mostrar/Ocultar Contraseña en Login
-document.getElementById("toggle-password").addEventListener("click", function() {
-    var passwordField = document.getElementById("password");
-    var icon = this.querySelector("i");
-    if (passwordField.type === "password") {
-        passwordField.type = "text";
-        icon.classList.remove("icofont-eye-blocked");
-        icon.classList.add("icofont-eye");
-    } else {
-        passwordField.type = "password";
-        icon.classList.remove("icofont-eye");
-        icon.classList.add("icofont-eye-blocked");
-    }
-});
-
-// Mostrar/Ocultar Contraseña en Sign Up
-document.getElementById("toggle-password-signup").addEventListener("click", function() {
-    var passwordField = document.getElementById("password-signup");
-    var icon = this.querySelector("i");
-    if (passwordField.type === "password") {
-        passwordField.type = "text";
-        icon.classList.remove("icofont-eye-blocked");
-        icon.classList.add("icofont-eye");
-    } else {
-        passwordField.type = "password";
-        icon.classList.remove("icofont-eye");
-        icon.classList.add("icofont-eye-blocked");
-    }
-});
-</script>
 
 </body>
 </html>

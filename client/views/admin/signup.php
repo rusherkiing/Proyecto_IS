@@ -9,7 +9,7 @@ include '../common/navbar.php';
             <div class="col-lg-6 col-md-8 col-12">
                 <div class="form-box">
                     <h2>Sign Up</h2>
-                    <form action="../../../server/controllers/signup_process.php" method="post">
+                    <form class="mt-4" action="../../../server/controllers/signup_process.php" method="post">
                         <div class="form-group">
                             <label for="name">Nombre:</label>
                             <input type="text" id="name" name="name" class="form-control" required>
@@ -19,15 +19,45 @@ include '../common/navbar.php';
                             <input type="text" id="last" name="last" class="form-control" required>
                         </div>
                         <div class="form-group">
+                        <label for="gender">Sexo:</label>
+                            <div class="row">
+                                <div class="col-10">  
+                                    <select id="gender" name="gender" class="form-control" required>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Edad:</label>
+                            <input type="number" id="age" name="age" class="form-control" required>
+                        </div>
+                        <div class="form-group">
                             <label for="email">Email:</label>
                             <input type="email" id="email" name="email" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Teléfono:</label>
                             <input type="number" id="phone" name="phone" class="form-control" required>
+                        </div>
                         <div class="form-group">
                             <label for="password">Password:</label>
                             <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+                        <div class="row">
+                        
+                        <div class="col-10" id="specialty" style="display: none;">
+                        <label for="specialty">Especialidades:</label><br>
+                                    <select id="specialty" name="specialty" class="form-control">
+                                        <option value="Oftalmología">Oftalmología</option>
+                                        <option value="Cardiología">Cardiología</option>
+                                        <option value="Pediatría">Pediatría</option>
+                                        <option value="Ginecología">Ginecología</option>
+                                        <option value="Dermatología">Dermatología</option>
+                                        <option value="Medicina General" select>Medicina General</option>
+                                    </select>
+                        </div>   
                         </div>
                         <div class="form-group">
                             <label for="role">El nuevo usuario es:</label>
@@ -44,6 +74,15 @@ include '../common/navbar.php';
                                         <label class="form-check-label" for="medico">Médico</label>
                                     </div>
                                 </div>
+                               
+                                <script>
+                                    document.getElementById('doctors').addEventListener('change', function() {
+                                        document.getElementById('specialty').style.display = 'block';
+                                    });
+                                    document.getElementById('patients').addEventListener('change', function() {
+                                        document.getElementById('specialty').style.display = 'none';
+                                    });
+                                </script>
                             </div>
                         </div>
                         <div class="form-group">

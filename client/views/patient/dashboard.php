@@ -40,19 +40,19 @@ $stmt_citas->close();
     <?php include '../common/navbar.php'; ?>
 
      <!-- CSS específico para esta página -->
-     <style>
-        /* Asegura que todas las celdas tengan una altura consistente */
-table td {
-    vertical-align: middle;
-}
-.modify-btn, .cancel-btn {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    height: 28px;
-    width: auto;
-    box-sizing: border-box;
-}
+    <style>
+            /* Asegura que todas las celdas tengan una altura consistente */
+    table td {
+        vertical-align: middle;
+    }
+    .modify-btn, .cancel-btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 28px;
+        width: auto;
+        box-sizing: border-box;
+    }
 
     </style>
 </head>

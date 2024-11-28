@@ -49,7 +49,7 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-12 col-12">
 							<div class="copyright-content">
-								<p>© Copyright 2018  |  All Rights Reserved by <a href="" target="_blank">PYTHON GX</a> </p>
+								<p>© Copyright 2024 |  All Rights Reserved by <a href="" target="_blank">PYTHON GX</a> </p>
 							</div>
 						</div>
 					</div>

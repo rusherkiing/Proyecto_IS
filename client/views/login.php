@@ -83,7 +83,7 @@
                                 <button type="submit" class="btn btn-light" name="buttonlogin">Login</button>
                             </div>
                             <div class="form-group text-center">
-                                <a href="login_admin.php" style="color: blue;">Eres Administrador?</a>
+                                <a href="login_admin.php" style="color: blue;">¿Eres Administrador?</a>
                             </div>
                         </div>
                         </form>

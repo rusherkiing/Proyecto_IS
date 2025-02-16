@@ -4,16 +4,18 @@ require_once '../../../server/database/conection.php';
 
 // Verificar si el usuario está autenticado y es paciente
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'patients') {
-    header("Location: ../../client/views/login.php");
+    header("Location: ../login.php");
     exit;
 }
 
 // Datos del usuario
 $id_usuario = $_SESSION['id'];
 $nombre = $_SESSION['nombre'];
+
 $apellido = $_SESSION['apellido'];
 $email = $_SESSION['email'];
 $foto = $_SESSION['foto'];
+
 
 // Consultar citas previas
 $sql_citas = "SELECT a.appointment_id, a.appointment_date, a.appointment_time, 
@@ -35,24 +37,24 @@ $stmt_citas->close();
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Paciente</title>
-    <link rel="stylesheet" href="../../asset/css/styles.css">
+    <link rel="stylesheet" href="../../asset/css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <?php include '../common/navbar.php'; ?>
 
      <!-- CSS específico para esta página -->
-    <style>
-            /* Asegura que todas las celdas tengan una altura consistente */
-    table td {
-        vertical-align: middle;
-    }
-    .modify-btn, .cancel-btn {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        height: 28px;
-        width: auto;
-        box-sizing: border-box;
-    }
+     <style>
+        /* Asegura que todas las celdas tengan una altura consistente */
+        table td {
+            vertical-align: middle;
+        }
+        .modify-btn, .cancel-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            height: 28px;
+            width: auto;
+            box-sizing: border-box;
+        }
 
     </style>
 </head>
@@ -70,14 +72,7 @@ $stmt_citas->close();
                         <p><strong>Apellido:</strong> <?php echo $apellido; ?></p>
                         <p><strong>Email:</strong> <?php echo $email; ?></p>
                     </div>
-                    <!-- Columna para la foto -->
-                    <div class="col-md-4 text-center">
-                        <?php if (!empty($foto)) { ?>
-                            <img src="../../uploads/<?php echo $foto; ?>" alt="Foto de <?php echo $nombre; ?>" class="img-fluid rounded-circle" style="max-width: 150px;">
-                        <?php } else { ?>
-                            <img src="../../uploads/default-profile.png" alt="Foto por defecto" class="img-fluid rounded-circle" style="max-width: 150px;">
-                        <?php } ?>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -96,12 +91,46 @@ $stmt_citas->close();
                 </div>
                 <!-- Columna para el botón -->
                 <div class="col-md-6 text-end">
-                    <a href="#agendar-cita" class="btn btn-primary" style="float: right;">Agendar Cita</a>
+                <button id="scheduleAppointmentButton" style="float: right;" class="btn btn-primary">Agendar Cita</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- mensaje de erro o de success -->
+
+        <!-- metodo con el que carga el formulario -->
+    <script>
+    document.getElementById('scheduleAppointmentButton').addEventListener('click', function () {
+    fetch('schedule_form.php')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('scheduleFormContainer').innerHTML = html;
+        });
+    });
+    </script>
+        <!-- mensaje de error o de success -->
+        <?php if (isset($_SESSION['error1'])): ?>
+    <div class="container mt-2">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <?= $_SESSION['error1']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    </div>
+    <?php unset($_SESSION['error1']); ?>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['success1'])): ?>
+    <div class="container mt-2">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <?= $_SESSION['success1']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    </div>
+    <?php unset($_SESSION['success1']); ?>
+    <?php endif; ?>
+    <!-- Agendar cita-->
+    <div id="scheduleFormContainer"></div>
+
+    <!-- mensaje de error o de success -->
     <?php if (isset($_SESSION['error'])): ?>
     <div class="container mt-2">
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -164,80 +193,5 @@ $stmt_citas->close();
         </div>
     </div>
 </div>
-
-
-
-    <!-- Agendar cita-->
-    <div class="container mt-5">
-        <div class="card mt-3">
-            <div class="card-body">
-                <h3 class="mb-4 text-center">Completa los datos para agendar tu cita</h3>
-                <form id="create-appointment-form">
-                    <div class="row mb-3">
-                        <!-- Primera fila: Fecha -->
-                        <div class="col-md-4 d-flex align-items-center">
-                            <label for="date" class="form-label"><strong>Fecha:</strong> (máximo 3 días desde hoy)</label>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="date" id="date" name="date" class="form-control" 
-                                min="<?= date('Y-m-d'); ?>" max="<?= date('Y-m-d', strtotime('+3 days')); ?>" required>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <!-- Segunda fila: Especialidad -->
-                        <div class="col-md-4 d-flex align-items-center">
-                            <label for="specialty" class="form-label"><strong>Especialidad:</strong></label>
-                        </div>
-                        <div class="col-md-8">
-                            <select id="specialty" name="specialty" class="form-control" required>
-                                <option value="" selected disabled>Selecciona una especialidad</option>
-                                <?php
-                                $sql_specialties = "SELECT DISTINCT specialty FROM doctors";
-                                $result_specialties = $conn->query($sql_specialties);
-                                while ($row = $result_specialties->fetch_assoc()) {
-                                    echo "<option value='{$row['specialty']}'>{$row['specialty']}</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <!-- Tercera fila: Doctor -->
-                        <div class="col-md-4 d-flex align-items-center">
-                            <label for="doctor" class="form-label"><strong>Doctor:</strong></label>
-                        </div>
-                        <div class="col-md-8">
-                            <select id="doctor" name="doctor" class="form-control" required>
-                                <option value="" selected disabled>Selecciona un doctor</option>
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <div class="row mb-3">
-                        <!-- Cuarta fila: Hora -->
-                        <div class="col-md-4 d-flex align-items-center">
-                            <label for="time" class="form-label"><strong>Hora:</strong></label>
-                        </div>
-                        <div class="col-md-8">
-                            <select id="time" name="time" class="form-control" required>
-                                <option value="" selected disabled>Selecciona una hora</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <!-- Quinta fila: Botón -->
-                        <div class="col-md-4"></div> <!-- Columna vacía para alinear -->
-                        <div class="col-md-8 text-left">
-                            <button type="submit" class="btn btn-primary">Agendar cita</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <script src="../../asset/js/appointment.js"></script>
 </body>
 </html>

@@ -149,12 +149,12 @@ $hora_actual = date("H:i"); // Hora actual del servidor en formato 24 horas
                                     <td class="text-center"><?= $cita['patient_first_name'] . ' ' . $cita['patient_last_name']; ?></td>
                                     <td class="text-center"><?= ucfirst($cita['status']); ?></td>
                                     <td class="text-center">
-                                        <?php if (isset($cita['status']) && $cita['status'] === 'scheduled' && strtotime($hora_actual) >= strtotime($cita['appointment_time']) ) { ?>
+                                        <?php if (isset($cita['status']) && $cita['status'] === 'scheduled') { ?>
                                         <a href="records.php?id=<?=$cita['appointment_id']; ?>" class="btn" style="padding: 3px">Generar Reporte</a>
                                         <?php } ?>
                                     </td>
                                 </tr>
-                            <?php } ?>
+                            <?php } ?> 
                         </tbody>
                     </table>
                 </div>
@@ -177,11 +177,12 @@ $hora_actual = date("H:i"); // Hora actual del servidor en formato 24 horas
                             <tr>
                                 <th class="text-center">Fecha</th>
                                 <th class="text-center">Paciente</th>
+                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $sql_expedientes = "SELECT mr.record_date, p.first_name AS patient_first_name, p.last_name AS patient_last_name
+                            $sql_expedientes = "SELECT mr.record_date, p.first_name AS patient_first_name, p.last_name AS patient_last_name, mr.record_id
                                                 FROM medical_records mr
                                                 JOIN patients p ON mr.patient_id = p.id
                                                 WHERE mr.doctor_id = ?
@@ -192,13 +193,14 @@ $hora_actual = date("H:i"); // Hora actual del servidor en formato 24 horas
                             $expedientes = $stmt_expedientes->get_result()->fetch_all(MYSQLI_ASSOC);
                             $stmt_expedientes->close();
 
-                            foreach ($expedientes as $expediente) {
-                                echo "<tr>";
-                                echo "<td class='text-center'>" . $expediente['record_date'] . "</td>";
-                                echo "<td class='text-center'>" . $expediente['patient_first_name'] . " " . $expediente['patient_last_name'] . "</td>";
-                                echo "</tr>";
-                            }
-                            ?>
+                            foreach ($expedientes as $expediente) { ?>
+                                <tr>
+                                    <td class='text-center'><?= $expediente['record_date']; ?></td>
+                                    <td class='text-center'><?= $expediente['patient_first_name'] . " " . $expediente['patient_last_name']; ?></td>
+                                    <td class='text-center'><a href='view_records.php?id=<?= $expediente['record_id']; ?>' class='btn' style='padding: 3px'>Ver Reporte</a></td>
+                                </tr>
+                            <?php } ?>
+                            
                         </tbody>
                     </table>
                 </div>

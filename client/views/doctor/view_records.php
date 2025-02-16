@@ -29,6 +29,7 @@ $sql = "SELECT
             p.age AS age, 
             d.id AS doctor_id, 
             d.specialty AS doctor_specialty
+           
         FROM appointments a
         JOIN patients p ON a.patient_id = p.id
         JOIN doctors d ON a.doctor_id = d.id
@@ -55,11 +56,41 @@ if ($stmt) {
         $age = $dato['age'];
         $doctor_id = $dato['doctor_id'];
         $doctor_specialty = $dato['doctor_specialty'];
+        
     } else {
         echo "No se encontraron datos para el ID de cita proporcionado.";
     }
     
    
+    // Cerrar el statement
+    $stmt->close();
+}else {
+    echo "Error al preparar la consulta: " . $conn->error;
+}
+
+//extraer el resto de los campos de la tabla medical_records
+$sql = "SELECT * FROM medical_records WHERE patient_id = ? AND doctor_id = ?";
+$stmt = $conn->prepare($sql);
+if ($stmt) {
+    // Enlazar los parámetros
+    $stmt->bind_param("ii", $id, $doctor_id);
+    // Ejecutar la consulta
+    $stmt->execute();
+    // Obtener el resultado
+    $result = $stmt->get_result();
+    // Verificar si hay resultados
+    if ($result->num_rows > 0) {
+        // Extraer los datos
+        $dato = $result->fetch_assoc();
+        $record_id = $dato["record_id"];
+        $record_date = $dato['record_date'];
+        $diagnose = $dato['diagnosis'];
+        $treatment = $dato['treatment'];
+        $obs = $dato['obs'];
+    } else {
+        echo "No se encontraron datos para el ID de cita proporcionado.";
+    }
+    
     // Cerrar el statement
     $stmt->close();
 }else {
@@ -84,7 +115,7 @@ if ($stmt) {
             <div class="row">
                 <!-- Columna para el título -->
                 <div class="col-md-6">
-                    <h3>Crear Reporte</h3>
+                    <h3>Verificar Reporte</h3>
                 </div>
             </div>
         </div>
@@ -114,29 +145,28 @@ if ($stmt) {
                 </div>
                 <div class="form-group">
                     <label for="fecha"><strong>Fecha:</strong></label>
-                    <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo date('Y-m-d'); ?>" readonly>
+                    <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo $record_date ?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="diagnostico"><strong>Diagnóstico:</strong></label>
-                    <textarea class="form-control" id="diagnostico" name="diagnostico" rows="3"></textarea>
+                    <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo $diagnose ?>" readonly style="padding: 10px;">
                 </div>
                 <div class="form-group">
                     <label for="tratamiento"><strong>Tratamiento:</strong></label>
-                    <textarea class="form-control" id="tratamiento" name="tratamiento" rows="3"></textarea>
+                    <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo $treatment ?>" readonly style="padding: 10px;">
+                  
                 </div>
                 <div class="form-group">
                     <label for="observaciones"><strong>Observaciones:</strong></label>
-                    <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
+                    <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo $obs ?>" readonly style="padding: 10px;">
+                    
                 </div>
-                <button type="submit" class="btn btn-primary" name="buttonrecord">Guardar Reporte</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='dashboard.php'">Cerrar Reporte</button>
+                
             </form>
         </div>
         
     </div>
 </div>
-
-    <div class="container mt-5">
-    
-   
 </body>
 </html>

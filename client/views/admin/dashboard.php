@@ -88,10 +88,12 @@ $result = $conn->query($sql);
                                                     </tbody>
                                                 </table>
                                             </div>
+                                            <a href="signup.php" class="btn">Crear Usuario</a>
                                         </div>
             </div>
         </div>
                                     </div>
+                                   
     </div>
 </div>
 </div>

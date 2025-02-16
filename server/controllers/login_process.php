@@ -45,7 +45,17 @@ try {
 
 } catch (Exception $e) {
     // Manejar cualquier excepción
-    echo "Ocurrió un error: " . $e->getMessage();
+    //echo "Ocurrió un error: " . $e->getMessage();// mostrar el mensaje de error en la pagina de inicio como un mensaje de error
+    header("Location: ../../client/views/login.php");
+    /*static $aux = 0;
+    $aux++; //no funciona la logica de incremento de la variable jaja
+    if ($aux < 3) {
+        header("Location: ../../client/views/login.php");//redirigir a la página de inicio de sesión
+        
+    }
+    else{
+        $_SESSION['error'] = "Demasiados intentos fallidos. Por favor, inténtelo más tarde.";
+    }*/
     exit();
 }
 

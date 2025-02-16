@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../../../server/database/conection.php';
-
+//echo $_GET["id"];
 if (!isset($_GET['id'])) {
     $_SESSION['error'] = "No se proporcionó el ID de la cita.";
     header("Location: dashboard.php");
@@ -38,19 +38,19 @@ if ($hours_difference < 6) {
     header("Location: dashboard.php");
     exit();
 }
-
-// Confirmar cancelación
-if (isset($_POST['confirm']) && $_POST['confirm'] === 'yes') {
-    $update_query = "UPDATE appointments SET status = 'cancelled' WHERE appointment_id = ?";
-    $update_stmt = $conn->prepare($update_query);
-    $update_stmt->bind_param("i", $appointment_id);
-    if ($update_stmt->execute()) {
-        $_SESSION['success'] = "Cita cancelada exitosamente.";
-        header("Location: dashboard.php");
+else{
+    $delete_query = "DELETE FROM appointments WHERE appointment_id = ?";
+    $delete_stmt = $conn->prepare($delete_query);
+    $delete_stmt->bind_param("i", $appointment_id);
+    
+    if ($delete_stmt->execute()) {
+        $_SESSION['success'] = "La cita ha sido cancelada exitosamente.";
     } else {
-        $_SESSION['error'] = "Error al cancelar la cita.";
-        header("Location: dashboard.php");
+        $_SESSION['error'] = "Hubo un error al cancelar la cita.";
     }
+    
+    header("Location: dashboard.php");
     exit();
 }
+
 ?>

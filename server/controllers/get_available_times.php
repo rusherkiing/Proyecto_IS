@@ -9,25 +9,30 @@ try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Verificar que se haya recibido la especialidad
-    if (!isset($_GET['specialty'])) {
+    // Verificar que se haya recibido el ID del doctor
+    if (!isset($_GET['doctor'])) {
         http_response_code(400); // Error de cliente
-        echo json_encode(['error' => 'Especialidad no proporcionada.']);
+        echo json_encode(['error' => 'ID del doctor no proporcionado.']);
         exit;
     }
 
-    $specialty = $_GET['specialty'];
+    $doctorId = $_GET['doctor'];
 
-    // Consulta para obtener los doctores según la especialidad
-    $stmt = $pdo->prepare("SELECT id, first_name, last_name FROM doctors WHERE specialty = :specialty");
-    $stmt->bindParam(':specialty', $specialty, PDO::PARAM_STR);
+    // Consulta para obtener los horarios disponibles para el doctor
+    $stmt = $pdo->prepare("
+        SELECT time 
+        FROM schedules 
+        WHERE doctor_id = :doctor_id 
+        AND available = 1
+    ");
+    $stmt->bindParam(':doctor_id', $doctorId, PDO::PARAM_INT);
     $stmt->execute();
 
-    $doctors = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $times = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
     // Retornar los datos en formato JSON
     header('Content-Type: application/json');
-    echo json_encode($doctors);
+    echo json_encode($times);
 
 } catch (PDOException $e) {
     http_response_code(500); // Error del servidor

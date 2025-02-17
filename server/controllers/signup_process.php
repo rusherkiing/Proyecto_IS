@@ -28,8 +28,12 @@ if ($role == 'doctors') {
 
 $result = $conn->query($sql);
 if ($result === TRUE) {
-    echo "New record created successfully";
+    //agregar alertar de que se ha registrado correctamente
+    //echo "New record created successfully";
+    header("Location: ../../client/index.php");
+    
 } else {
+
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 

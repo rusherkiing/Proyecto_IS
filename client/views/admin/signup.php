@@ -89,6 +89,7 @@ include '../common/navbar.php';
                             <button type="submit" class="btn btn-primary" name="buttonsignup">Sign Up</button>
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </div>

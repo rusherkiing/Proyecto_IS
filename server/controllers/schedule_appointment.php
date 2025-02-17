@@ -18,6 +18,9 @@ include '../database/conection.php'; // Incluye la conexión a la base de datos
     if ($stmt->execute()) {
         $_SESSION['success1'] = "Cita agendada exitosamente.";
         header('Location: ../../client/views/patient/dashboard.php');
+        //require 'send.php';
+        // Enviar el correo electrónico
+        include 'send.php';
     } else {
         $_SESSION['error1'] = "No se puede agendar.";
         header("Location: ../../client/views/patient/dashboard.php");

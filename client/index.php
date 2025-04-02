@@ -96,6 +96,7 @@
 											 </li>
 											 <li><a href="#">Sobre Nosotros </a></li>
 											 <li><a href="views/common/contact.html">Contáctanos</a></li>
+											 <li><a href="views/login.php" class="btn">Iniciar Sesión</a></li>
 										 </ul>
 									 </nav>
 								 </div>

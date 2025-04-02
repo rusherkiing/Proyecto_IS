@@ -11,15 +11,15 @@ include '../common/navbar.php';
                     <h2>Sign Up</h2>
                     <form class="mt-4" action="../../../server/controllers/signup_process.php" method="post">
                         <div class="form-group">
-                            <label for="name">Nombre:</label>
+                            <label for="name">Nombre<span style="color: red;">*</span></label>
                             <input type="text" id="name" name="name" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="last">Apellido:</label>
+                            <label for="last">Apellido<span style="color: red;">*</span></label>
                             <input type="text" id="last" name="last" class="form-control" required>
                         </div>
                         <div class="form-group">
-                        <label for="gender">Sexo:</label>
+                        <label for="gender">Sexo<span style="color: red;">*</span></label>
                             <div class="row">
                                 <div class="col-10">  
                                     <select id="gender" name="gender" class="form-control" required>
@@ -30,25 +30,25 @@ include '../common/navbar.php';
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="age">Edad:</label>
+                            <label for="age">Edad<span style="color: red;">*</span></label>
                             <input type="number" id="age" name="age" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email:</label>
+                            <label for="email">Email<span style="color: red;">*</span></label>
                             <input type="email" id="email" name="email" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Teléfono:</label>
-                            <input type="number" id="phone" name="phone" class="form-control" required>
+                            <label for="phone">Teléfono<span style="color: red;">*</span></label>
+                            <input type="tel" id="phone" name="phone" class="form-control" maxlength="8" required>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password:</label>
+                            <label for="password">Password<span style="color: red;">*</span></label>
                             <input type="password" id="password" name="password" class="form-control" required>
                         </div>
                         <div class="row">
                         
                         <div class="col-10" id="specialty" style="display: none;">
-                        <label for="specialty">Especialidades:</label><br>
+                        <label for="specialty">Especialidades</label><br>
                                     <select id="specialty" name="specialty" class="form-control">
                                         <option value="Oftalmología">Oftalmología</option>
                                         <option value="Cardiología">Cardiología</option>
@@ -60,7 +60,7 @@ include '../common/navbar.php';
                         </div>   
                         </div>
                         <div class="form-group">
-                            <label for="role">El nuevo usuario es:</label>
+                            <label for="role">El nuevo usuario es<span style="color: red;">*</span></label>
                             <div class="row ml-2">
                                 <div class="col-md-4">
                                     <div class="form-check">

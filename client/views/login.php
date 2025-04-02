@@ -46,6 +46,26 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-12">
+                <!-- mensaje de error o de success -->
+                    <?php if (isset($_SESSION['error1'])): ?>
+                    <div class="container mt-2">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?= $_SESSION['error1']; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    </div>
+                    <?php unset($_SESSION['error1']); ?>
+                    <?php endif; ?>
+
+                    <?php if (isset($_SESSION['success1'])): ?>
+                    <div class="container mt-2">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <?= $_SESSION['success1']; ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    </div>
+                    <?php unset($_SESSION['success1']); ?>
+                    <?php endif; ?>
                 <!-- Card for Login -->
                 <div class="card">
                     <div class="card-body">

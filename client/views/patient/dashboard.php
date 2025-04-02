@@ -107,26 +107,7 @@ $stmt_citas->close();
         });
     });
     </script>
-        <!-- mensaje de error o de success -->
-        <?php if (isset($_SESSION['error1'])): ?>
-    <div class="container mt-2">
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <?= $_SESSION['error1']; ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    </div>
-    <?php unset($_SESSION['error1']); ?>
-    <?php endif; ?>
 
-    <?php if (isset($_SESSION['success1'])): ?>
-    <div class="container mt-2">
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <?= $_SESSION['success1']; ?>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    </div>
-    <?php unset($_SESSION['success1']); ?>
-    <?php endif; ?>
     <!-- Agendar cita-->
     <div id="scheduleFormContainer"></div>
 

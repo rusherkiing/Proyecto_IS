@@ -38,25 +38,26 @@ $foto = $_SESSION['foto'];
                             <option value="Medicina General">Medicina General</option>
                         </select>
                     </div>
-
                     <div class="mb-3">
                         <label for="doctor" class="form-label"><strong>Doctor:</strong></label>
                         <select id="doctor" name="doctor" class="form-control" required>
-                            <option value="" selected disabled>Selecciona un doctor</option>
-                            <?php
-                            require_once '../../../server/database/conection.php';
+                        <option value="" selected disabled>Selecciona un doctor</option>
+                        <?php
+                        require_once '../../../server/database/conection.php';
 
-                            $query = "SELECT id, first_name, last_name FROM doctors";
-                            $result = $conn->query($query);
+                        $query = "SELECT id, first_name, last_name, specialty FROM doctors";
+                        $result = $conn->query($query);
 
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo '<option value="' . $row['id'] . '">' . $row['first_name'] . ' ' . $row['last_name'] . '</option>';
-                                }
-                            } else {
-                                echo '<option value="" disabled>No hay doctores disponibles</option>';
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo '<option value="' . $row['id'] . '" data-specialty="' . htmlspecialchars($row['specialty']) . '">'
+                                    . htmlspecialchars($row['first_name']) . ' ' . htmlspecialchars($row['last_name']) . 
+                                    '</option>';
                             }
-                            ?>
+                        } else {
+                            echo '<option value="" disabled>No hay doctores disponibles</option>';
+                        }
+                        ?>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -83,4 +84,31 @@ $foto = $_SESSION['foto'];
         </div>
     </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let specialtySelect = document.getElementById("specialty");
+    let doctorSelect = document.getElementById("doctor");
+
+    specialtySelect.addEventListener("change", function() {
+        let selectedSpecialty = this.value;
+        
+        // Guardamos la opción "Selecciona un doctor"
+        let defaultOption = doctorSelect.options[0];
+
+        // Limpiamos el select de doctores excepto la primera opción
+        doctorSelect.innerHTML = "";
+        doctorSelect.appendChild(defaultOption);
+
+        // Recorremos todas las opciones originales y filtramos
+        document.querySelectorAll("#doctor option[data-specialty]").forEach(option => {
+            if (option.getAttribute("data-specialty") === selectedSpecialty) {
+                doctorSelect.appendChild(option);
+            }
+        });
+
+        // Resetear selección
+        doctorSelect.selectedIndex = 0;
+    });
+});
+</script>
 

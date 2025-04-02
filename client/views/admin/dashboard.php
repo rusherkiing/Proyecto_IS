@@ -45,7 +45,9 @@ $result = $conn->query($sql);
                                     <td class="text-center"><?= $patient['last_name']; ?></td>
                                     <td class="text-center"><?= $patient['email']; ?></td>
                                     <td class="text-center"><?= $patient['phone']; ?></td>
-                                    <td class="text-center"> <a href="../../../server/controllers/delete.php?id=<?= $doctor['id']; ?>" class="btn" style="padding: 3px">Eliminar</a></td>
+                                    <td class="text-center">
+                                        <a href="../../../server/controllers/delete.php?id=<?= $patient['id']; ?>" class="btn" style="padding: 3px">Eliminar</a>
+                                    </td>
 
                                 </tr>
                             <?php } ?>
@@ -58,43 +60,39 @@ $result = $conn->query($sql);
         <div class="card mt-3">
         <div class="card-body">
         <h3 class="text">Médicos Registrados</h3>
-                                            <div class="table-responsive text-center">
-                                                <table class="table table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="text-center">ID</th>
-                                                            <th class="text-center">Nombre</th>
-                                                            <th class="text-center">Apellido</th>
-                                                            <th class="text-center">Email</th>
-                                                            <th class="text-center">Número</th>
-                                                            <th class="text-center">Acciones</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-                                                        $sql_doctors = "SELECT id, first_name, last_name, email, phone FROM doctors";
-                                                        $result_doctors = $conn->query($sql_doctors);
-                                                        foreach ($result_doctors as $doctor) { ?>
-                                                            <tr>
-                                                                <td class="text-center"><?= $doctor['id']; ?></td>
-                                                                <td class="text-center"><?= $doctor['first_name']; ?></td>
-                                                                <td class="text-center"><?= $doctor['last_name']; ?></td>
-                                                                <td class="text-center"><?= $doctor['email']; ?></td>
-                                                                <td class="text-center"><?= $doctor['phone']; ?></td>
-                                                                <td class="text-center">
-                                                                <a href="../../../server/controllers/delete.php?id=<?= $doctor['id']; ?>" class="btn" style="padding: 3px">Eliminar</a></td>
-                                                            </tr>
-                                                        <?php } ?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <a href="signup.php" class="btn">Crear Usuario</a>
-                                        </div>
-            </div>
+        <div class="table-responsive text-center">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Apellido</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Número</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $sql_doctors = "SELECT id, first_name, last_name, email, phone FROM doctors";
+                    $result_doctors = $conn->query($sql_doctors);
+                    foreach ($result_doctors as $doctor) { ?>
+                        <tr>
+                            <td class="text-center"><?= $doctor['id']; ?></td>
+                            <td class="text-center"><?= $doctor['first_name']; ?></td>
+                            <td class="text-center"><?= $doctor['last_name']; ?></td>
+                            <td class="text-center"><?= $doctor['email']; ?></td>
+                            <td class="text-center"><?= $doctor['phone']; ?></td>
+                            <td class="text-center">
+                                <a href="../../../server/controllers/delete.php?id=<?= $doctor['id']; ?>" class="btn" style="padding: 3px">Eliminar</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
         </div>
-                                    </div>
-                                   
-    </div>
+        <a href="signup.php" class="btn">Crear Usuario</a>
+        
 </div>
 </div>
 </div>    

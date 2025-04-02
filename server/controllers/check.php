@@ -16,20 +16,13 @@ require 'PHPMailer/Exception.php';
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
-// Database connection
-require_once '../database/conection.php';
+
+$email = $_POST['email'];
+$first_name = $_POST['name'];
+$last_name = $_POST['last'];
+
 
 // Fetch patient details
-$sql = "SELECT first_name, last_name, email FROM patients WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $patient_id);
-$stmt->execute();
-$stmt->bind_result($first_name, $last_name, $email);
-$stmt->fetch();
-$stmt->close();
-$conn->close();
-
-
 try {
     //Server settings
     $mail->SMTPDebug = 0;                      //Enable verbose debug output
@@ -48,7 +41,7 @@ try {
     //Recibir el correo del paciente, fecha de la cita, nombre del paciente
     
 
-    $mail->addAddress($email, 'Paciente'); 
+    $mail->addAddress($email, 'Nuevo Usuario'); 
     /*    //Add a recipient
     $mail->addAddress('ellen@example.com');               //Name is optional
     $mail->addReplyTo('info@example.com', 'Information');
@@ -61,7 +54,7 @@ try {
     */
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Cita Confirmada';
+    $mail->Subject = 'Cuenta Creada Correctamente';
     
     $mail->Body    = "
     <html>
@@ -100,22 +93,19 @@ try {
     </head>
     <body>
         <div class='container'>
-            <div class='header'>Cita Confirmada</div>
+            <div class='header'>Cuenta Creada Correctamente</div>
             <div class='content'>
                 Estimado/a $first_name $last_name,<br><br>
-                Su cita ha sido confirmada para el día $appointment_date a las $appointment_time.<br>
-                Por favor, no olvide llevar su carnet de identidad.
+                Su cuenta ha sido creada exitosamente.<br>
+                Ahora puede acceder a nuestros servicios en línea utilizando su correo electrónico registrado.
             </div>
             <div class='footer'>
-            <img src='https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.pinterest.com%2Fpin%2F360639882665288928%2F&psig=AOvVaw32oa8a6P0w1CnZB0wJbGO3&ust=1739846627844000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMCsh_3XyYsDFQAAAAAdAAAAABAE' alt='Clinica Virgen de las Nieves'/>
-            </div>
+           </div>
         </div>
     </body>
     </html>";
-    //$mail->AltBody = "Estimado/a $first_name $last_name, su cita ha sido confirmada, por favor no olvide llevar su carnet de identidad";
-
     $mail->send();
-    echo 'Message has been sent';
+    //echo 'Message has been sent';
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }

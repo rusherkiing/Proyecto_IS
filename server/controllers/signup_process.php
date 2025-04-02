@@ -17,6 +17,15 @@ if (isset($_POST["buttonsignup"])) {
 }
 //echo"Datos recibidos";
 $password = password_hash($password, PASSWORD_DEFAULT);
+// Check if email already exists
+$emailCheckSql = "SELECT email FROM doctors WHERE email = '$email' UNION SELECT email FROM patients WHERE email = '$email'";
+$emailCheckResult = $conn->query($emailCheckSql);
+
+if ($emailCheckResult->num_rows > 0) {
+    echo "El correo electrónico ya está registrado. Por favor, utiliza otro.";
+    exit();
+}
+
 if ($role == 'doctors') {
     $sql = "INSERT INTO doctors (first_name, last_name, email, phone, password, gender, age, specialty) VALUES ('$name', '$last', '$email', '$phone', '$password', '$gender', '$age', '$specialty')";
 } elseif ($role == 'patients') {
@@ -26,14 +35,16 @@ if ($role == 'doctors') {
     exit();
 }
 
+
 $result = $conn->query($sql);
 if ($result === TRUE) {
-    //agregar alertar de que se ha registrado correctamente
-    //echo "New record created successfully";
-    header("Location: ../../client/index.php");
-    
+    //header("Location: ../../client/views/admin/dashboard.php");
+    include 'check.php';
+    $_SESSION['name'] = $name;
+    $_SESSION['last'] = $last;
+    $_SESSION['email'] = $email;
+    // Enviar el correo electrónico
 } else {
-
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 

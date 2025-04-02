@@ -8,18 +8,18 @@ include '../common/navbar.php';
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 col-12">
                 <div class="form-box">
-                    <h2>Sign Up</h2>
+                    <h2>Nuevo Usuario</h2>
                     <form class="mt-4" action="../../../server/controllers/signup_process.php" method="post">
                         <div class="form-group">
-                            <label for="name">Nombre:</label>
+                            <label for="name">Nombre: *</label>
                             <input type="text" id="name" name="name" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="last">Apellido:</label>
+                            <label for="last">Apellido: *</label>
                             <input type="text" id="last" name="last" class="form-control" required>
                         </div>
                         <div class="form-group">
-                        <label for="gender">Sexo:</label>
+                        <label for="gender">Sexo: *</label>
                             <div class="row">
                                 <div class="col-10">  
                                     <select id="gender" name="gender" class="form-control" required>
@@ -30,23 +30,71 @@ include '../common/navbar.php';
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="age">Edad:</label>
+                            <label for="age">Edad: *</label>
                             <input type="number" id="age" name="age" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email:</label>
+                            <label for="email">Email: *</label>
                             <input type="email" id="email" name="email" class="form-control" required>
+                            <small id="emailHelp" class="form-text text-muted" style="color: red; display: none;">Por favor, ingrese un correo electrónico válido de Gmail, Hotmail o Outlook.</small>
                         </div>
+                        <script>
+                            document.getElementById('email').addEventListener('input', function() {
+                                const emailInput = this;
+                                const emailHelp = document.getElementById('emailHelp');
+                                const emailPattern = /^[^\s@]+@(gmail\.com|hotmail\.com|outlook\.com)$/i;
+                                if (!emailPattern.test(emailInput.value)) {
+                                    emailHelp.style.display = 'block';
+                                } else {
+                                    emailHelp.style.display = 'none';
+                                }
+                            });
+                        </script>
                         <div class="form-group">
-                            <label for="phone">Teléfono:</label>
+                            <label for="phone">Teléfono: *</label>
                             <input type="number" id="phone" name="phone" class="form-control" required>
+                            <small id="phoneHelp" class="form-text text-muted" style="color: red; display: none;">El número de teléfono debe tener 8 dígitos y comenzar con 6 o 7.</small>
+                        </div>
+                        <script>
+                            document.getElementById('phone').addEventListener('input', function() {
+                                const phoneInput = this;
+                                const phoneHelp = document.getElementById('phoneHelp');
+                                const phonePattern = /^[67]\d{7}$/;
+                                if (!phonePattern.test(phoneInput.value)) {
+                                    phoneHelp.style.display = 'block';
+                                } else {
+                                    phoneHelp.style.display = 'none';
+                                }
+                            });
+                        </script>
+                        <div class="form-group">
+                            <label for="password">Password: *</label>
+                            <input type="password" id="password" name="password" class="form-control" minlength="8" required>
+                            <small id="passwordHelp" class="form-text text-muted" style="color: red; display: none;">La contraseña debe tener al menos 8 caracteres.</small>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" class="form-control" required>
+                            <label for="confirm_password">Confirmar Password: *</label>
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control" minlength="8" required>
+                            <small id="confirmPasswordHelp" class="form-text text-muted" style="color: red; display: none;">Las contraseñas no coinciden.</small>
                         </div>
-                        <div class="row">
+                        <script>
+                            document.getElementById('password').addEventListener('input', validatePasswords);
+                            document.getElementById('confirm_password').addEventListener('input', validatePasswords);
+
+                            function validatePasswords() {
+                                const passwordInput = document.getElementById('password');
+                                const confirmPasswordInput = document.getElementById('confirm_password');
+                                const confirmPasswordHelp = document.getElementById('confirmPasswordHelp');
+
+                                if (confirmPasswordInput.value !== passwordInput.value) {
+                                    confirmPasswordHelp.style.display = 'block';
+                                } else {
+                                    confirmPasswordHelp.style.display = 'none';
+                                }
+                            }
+                        </script>
                         
+                        <div class="row">
                         <div class="col-10" id="specialty" style="display: none;">
                         <label for="specialty">Especialidades:</label><br>
                                     <select id="specialty" name="specialty" class="form-control">
@@ -86,7 +134,7 @@ include '../common/navbar.php';
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" name="buttonsignup">Sign Up</button>
+                            <button type="submit" class="btn btn-primary" name="buttonsignup">Crear Usuario</button>
                         </div>
                     </form>
                     

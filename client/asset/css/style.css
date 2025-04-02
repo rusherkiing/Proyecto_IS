@@ -302,14 +302,14 @@ body{
 	width:100%;
 }
 .get-quote{
-	margin-top:12px;
+	margin-top:20px;
 }
 .get-quote .btn{
 	color:#fff;
 }
 .header .logo {
 	float: left;
-	margin-top: 18px;
+	padding-top: 5px;
 }
 .header .navbar {
 	background: none;
@@ -321,6 +321,7 @@ body{
 }
 .header .nav li{
 	margin-right: 15px;
+	margin-top: 10px;
     float: left;
 	position:relative;
 }

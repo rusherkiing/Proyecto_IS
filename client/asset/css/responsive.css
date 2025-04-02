@@ -388,42 +388,50 @@ Version:	1.1
 	bottom:initial;
 }
 .header .header-inner {
-	width: 100%;
-	z-index: 333;
-	position: absolute;
-	position: relative;
-	padding-bottom: 20px;
-	background: #fff;
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;  /* Asegura que el logo y el botón estén a los extremos */
+    align-items: center;  /* Alinea el logo y el botón verticalmente en el centro */
+    padding: 10px 0;  /* Ajusta el espacio alrededor si es necesario */
 }
-.slicknav_menu{
-	display:block;
+
+.header .row {
+    display: flex;
+    justify-content: space-between;  /* Asegura que todos los elementos estén en una fila */
+    width: 100%;
 }
-.slicknav_menu {
-	display: block;
-	background: transparent;
-	padding: 0;
+
+.header .logo {
+    width: 40%;
+    display: flex;
+    justify-content: flex-start; /* Alinea el logo a la izquierda */
 }
+
+.header .main-menu {
+    flex: 1; /* Toma el resto del espacio disponible */
+    display: flex;
+    justify-content: flex-end; /* Alinea el menú a la derecha */
+}
+
 .slicknav_btn {
-	background: transparent;
-	padding: 0;
-	margin-top: -30px;
+    background: transparent;
+	padding: 10px 0 0;
 }
+
+
 .slicknav_menu .slicknav_icon-bar{
 	box-shadow:none;
 }
-.slicknav_menu{
-	display:block;
-}
+
 .slicknav_menu {
 	display: block;
 	background: transparent;
 	padding: 0;
+	align-items: center;
+	justify-content: flex-end;
 }
-.slicknav_btn {
-	background: transparent;
-	padding: 0;
-	margin-top: 28px;
-}
+
 .slicknav_menu .slicknav_icon-bar{
 	box-shadow:none;
 }
@@ -434,9 +442,7 @@ Version:	1.1
 	font-size: .875em;
 	background: transparent;
 }
-.slicknav_nav li{
-	
-}
+
 .slicknav_nav li a {
 	color: #2C2D3F;
 	transition: all 0.4s ease;
@@ -515,14 +521,14 @@ Version:	1.1
 	display:none;
 }
 .header .header-inner .get-quote{
-	margin: 0;
+	margin: 5px 5px;
 	padding: 0;
 }
 .header .header-inner .get-quote .btn {
 	color: #fff;
-	display: none;
+	display: inline-block;
 	margin: 0;
-	padding: 0;
+	padding: 5px;
 }
 .section{
 	padding:50px 0px;
@@ -1049,6 +1055,9 @@ Version:	1.1
 	padding: 11px 20px;
 	font-weight: 400;
 	font-size: 14px;
+}
+.nav .menu .btn {
+	display: none;
 }
 .header .top-link {
 	float: none;

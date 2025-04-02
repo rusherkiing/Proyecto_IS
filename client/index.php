@@ -68,7 +68,7 @@
 				 <div class="container">
 					 <div class="inner">
 						 <div class="row">
-							 <div class="col-lg-3 col-md-3 col-12">
+							 <div class="col-lg-3 col-md-9 col-12">
 								 <!-- Start Logo -->
 								 <div class="logo">
 									 <a href="index.php"><img src="asset/img/logo.png" alt="#"></a>
@@ -78,7 +78,7 @@
 								 <div class="mobile-nav"></div>
 								 <!-- End Mobile Nav -->
 							 </div>
-							 <div class="col-lg-7 col-md-9 col-12">
+							 <div class="col-lg-9 col-md-9 col-12">
 								 <!-- Main Menu -->
 								 <div class="main-menu">
 									 <nav class="navigation">
@@ -96,16 +96,15 @@
 											 </li>
 											 <li><a href="#">Sobre Nosotros </a></li>
 											 <li><a href="views/common/contact.html">Contáctanos</a></li>
-											 <li><a href="views/login.php" class="btn">Iniciar Sesión</a></li>
+											 <div>
+												<div class="get-quote">
+													<a href="views/login.php" class="btn">Iniciar Sesión</a>
+												</div>
+											</div>
 										 </ul>
 									 </nav>
 								 </div>
 								 <!--/ End Main Menu -->
-							 </div>
-							 <div class="col-lg-2 col-12">
-								 <div class="get-quote">
-									 <a href="views/login.php" class="btn">Iniciar Sesión</a>
-								 </div>
 							 </div>
 						 </div>
 					 </div>
